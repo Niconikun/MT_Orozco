@@ -35,6 +35,11 @@ ___ _       _________ _               ___ _
 
 """
 # Imports
+from os import path
+
+
+path
+import numpy
 import numpy as np
 from scipy import interpolate
 from cmath import pi
