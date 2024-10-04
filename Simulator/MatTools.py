@@ -95,7 +95,7 @@ def check(vector):
     return vector
 
 def normalise(vector):
-    'Normalises a vector'
+    'Normalizes a vector'
 
     norm=np.linalg.norm(vector)
     if norm==0:
@@ -143,7 +143,7 @@ def angle_vector_z(velocity):
     MAINLY USED FOR ANGLE OF ATTACK. Obtains angle between two vectors. 
     """   
     v=np.linalg.norm(velocity)
-    # Attempt to correct efect of negative X component of velocity on bodyframe:
+    # Attempt to correct effect of negative X component of velocity on bodyframe:
     if v==0:
         angle=0
     else:

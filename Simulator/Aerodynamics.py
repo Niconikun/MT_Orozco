@@ -39,12 +39,11 @@ from os import path
 
 
 path
-import numpy
 import numpy as np
 from scipy import interpolate
 from cmath import pi
 
-# Auxiliary funtions
+# Auxiliary functions
 deg2rad=pi/180
 rad2deg=180/pi
 
@@ -61,7 +60,7 @@ class Aerodynamics(object):
                       0.45078,0.50512,0.525,0.55998,0.53465,0.51829,
                       0.50535,0.47411,0.42844,0.38992,0.3556,0.30924,])
   
-        # Interpolation from data to create a curve function that describes cd behaviour
+        # Interpolation from data to create a curve function that describes cd behavior
         spline = interpolate.splrep(m, cd)           
 
         self.mach=mach     # [-]          # Mach number
@@ -80,33 +79,33 @@ class Aerodynamics(object):
     
         alpha=angle*deg2rad  # [rad]
 
-        # Coefficient of normal force aproximation for subsonic regim, [Box09] and [Barro67]   
-        X_b=205.35            # [mm]     # Length of ojive or distance from tip of nose to base of nose
+        # Coefficient of normal force approximation for subsonic regime, [Box09] and [Barro67]   
+        X_b=205.35            # [mm]     # Length of warhead or distance from tip of nose to base of nose
         X_f=856               # [mm]     # Length between nose cone tip and the point where the fin leading edge meets the body tube
-        X_c=936               # [mm]     # Length between nose tip to boattail 
+        X_c=936               # [mm]     # Length between nose tip to rear
         
-        l_n=205.35            # [mm]     # Length of ojive or distance from tip of nose to base of nose
-        l_b=730               # [mm]     # Length of body tube (not considering boattail)
+        l_n=205.35            # [mm]     # Length of warhead or distance from tip of nose to base of nose
+        l_b=730               # [mm]     # Length of body tube (not considering rear)
         l_r=76.32             # [mm]     # Fins aerodynamic chord at root
         l_t=33.6722           # [mm]     # Fins aerodynamic chord at tip
         l_m=46.6440           # [mm]     # Fins aerodynamic mid-chord
-        l_c=62                # [mm]     # Length of boattail
+        l_c=62                # [mm]     # Length of rear
         l_s=41.75             # [mm]     # Fins span
 
-        d_n=88.9              # [mm]     # Diameter of base of ojive
+        d_n=88.9              # [mm]     # Diameter of base of warhead
         d_b=88.9              # [mm]     # Diameter of body tube
         d_f=88.9              # [mm]     # Diameter of body tube where fins are met
-        d_u=88.9              # [mm]     # Diameter of boattail where it meets body tube
-        d_d=93                # [mm]     # Diameter of boattail at the end
+        d_u=88.9              # [mm]     # Diameter of rear where it meets body tube
+        d_d=93                # [mm]     # Diameter of rear at the end
         
         fins=4                # [-]      # Number of fins
 
         # Cone [Box09]:
-        Cn_alpha_cone=2       # [-]      # Normal force coefficent gradient for cone (ojive)
+        Cn_alpha_cone=2       # [-]      # Normal force coefficient gradient for cone (warhead)
         Xcp_cone=0.466*l_n    # [mm]     # Centre of pressure of cone
 
         # Body, [Box09]:
-        Cn_alpha_body=(l_b/(pi*0.25*d_b))*alpha            # [-]        # Normal force coefficent gradient for body tube
+        Cn_alpha_body=(l_b/(pi*0.25*d_b))*alpha            # [-]        # Normal force coefficient gradient for body tube
         Xcp_body=X_b + 0.5*l_b                             # [mm]       # Centre of pressure of body tube
         
         # Cn_alpha_body=2*alpha     # Fleeman's method for Rocket's body [Fleem01]
@@ -116,16 +115,15 @@ class Aerodynamics(object):
         # Xcp_body=0
         
         # Tail, [Box09]:
-        Cn_alpha_tail=2*(((d_d/d_n)**2) - ((d_u/d_n)**2))  # [-]        # Normal force coefficent gradient for boattail 
-        Xcp_tail= X_c + (l_c/3)* (1 + 1/(1+(d_u/d_n)))     # [mm]       # Centre of pressure of boattail
-
+        Cn_alpha_tail=2*(((d_d/d_n)**2) - ((d_u/d_n)**2))  # [-]        # Normal force coefficient gradient for rear 
+        Xcp_tail= X_c + (l_c/3)* (1 + 1/(1+(d_u/d_n)))     # [mm]       # Centre of pressure of rear
         # Fins [Box09]:
         Kfb=1 + ((0.5*d_f)/(l_s + 0.5*d_f))                                                           # [-]     # Coefficient for interference effects between the fin and the body
-        Cn_alpha_fins=(Kfb*4*fins)*(((l_s/d_n)**2)/(1 + (np.sqrt(1+(2*l_m/(l_r+l_t))**2))))           # [-]     # Normal force coefficent gradient for fins
+        Cn_alpha_fins=(Kfb*4*fins)*(((l_s/d_n)**2)/(1 + (np.sqrt(1+(2*l_m/(l_r+l_t))**2))))           # [-]     # Normal force coefficient gradient for fins
         Xcp_fins= X_f+((l_m/3)*((l_r + 2*l_t)/(l_r+l_t)))+((1/6)*(l_r + l_t-((l_r*l_t)/(l_r+l_t))))   # [mm]    # Centre of pressure of fins
  
         # Results, [Box09]:
-        Cn_sum=Cn_alpha_cone + Cn_alpha_body + Cn_alpha_tail + Cn_alpha_fins # [-]      # Sum of all coefficents gradients
+        Cn_sum=Cn_alpha_cone + Cn_alpha_body + Cn_alpha_tail + Cn_alpha_fins # [-]      # Sum of all coefficients gradients
         cn=Cn_sum*alpha                                                      # [-]      # Obtaining of rocket's normal force coefficient
     
         # Centre of pressure location from nose tip using [Box09]:

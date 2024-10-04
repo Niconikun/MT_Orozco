@@ -59,7 +59,7 @@ class Rocket(object):
 
         self.time=0               # [s]       # Initial time of simulation
 
-        #_______Historics_________#
+        #_______Historical_________#
         #*Note: All measure units in these lists are the same as used during calculation and indicated properly in every method
         self.hist_r_enu=[]       # East-North-Up location from platform
         self.hist_v_enu=[]       # East-North-Up velocity from platform
@@ -83,7 +83,7 @@ class Rocket(object):
 
         self.hist_v_b=[]         # Velocity in bodyframe
         self.hist_v_bx=[]        # Velocity in bodyframe (X or axial component)
-        self.hist_v_by=[]        # Velocity in bodyframe (Y or cross component...if Rocket point to East at the beggining, this would be pointing towards North)
+        self.hist_v_by=[]        # Velocity in bodyframe (Y or cross component...if Rocket point to East at the beginning, this would be pointing towards North)
         self.hist_v_bz=[]        # Velocity in bodyframe (Z of cross component...if X and Y are parallel to East and North, respectively, this would point Up)
         self.hist_alpha=[]       # Angle of attack
 
@@ -108,7 +108,7 @@ class Rocket(object):
         self.hist_forces_engine_b=[]    # Forces produced by engine in bodyframe
         self.hist_torques_engine_b=[]   # Torques produced by engine in bodyframe
 
-        self.hist_range=[]              # Horizintal range norm from platform
+        self.hist_range=[]              # Horizontal range norm from platform
         self.hist_east=[]               # Distance towards East from platform
         self.hist_north=[]              # Distance towards North from platform
         self.hist_up=[]                 # Distance towards Up from platform (can be treated as altitude)
@@ -171,7 +171,7 @@ class Rocket(object):
         self.v_sonic=v_sonic      # [m/s]     # Speed of sound 
 
     def update_aerodynamics(self):
-        "Updates aerodynamic characeteristics from Aerodynamics Module"
+        "Updates aerodynamic characteristics from Aerodynamics Module"
         # Conditional to avoid Runtime Warning for division by zero
        
         if self.v_norm==0:
@@ -313,7 +313,7 @@ class Rocket(object):
         self.v_enu=new_x[3:6]
         
         q_enu2b=new_x[6:10]
-        self.q_enu2b=Mat.normalise(q_enu2b)  # Quaternion needs to be normalised after propagation
+        self.q_enu2b=Mat.normalise(q_enu2b)  # Quaternion needs to be normalized after propagation
         
         w_b=new_x[10:13]
         self.w_enu=Mat.q_rot(w_b,q_enu2b,1)
