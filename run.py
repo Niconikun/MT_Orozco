@@ -7,11 +7,13 @@ import os
 from   flask_migrate import Migrate
 from   flask_minify  import Minify
 from   sys import exit
+from dotenv import load_dotenv
 
 from apps.config import config_dict
 from apps import create_app, db
 
 # WARNING: Don't run with debug turned on in production!
+load_dotenv(dotenv_path=".env")
 DEBUG = (os.getenv('DEBUG', 'False') == 'True')
 
 # The configuration
