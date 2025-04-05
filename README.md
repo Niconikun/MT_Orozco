@@ -4,17 +4,6 @@
 
 <br />
 
-> Features:
-
-- ✅ `Up-to-date dependencies`
-- ✅ Black Dashboard, BS4 Design
-- ✅ `DB Tools`: SQLAlchemy ORM, `Flask-Migrate` (schema migrations)
-- ✅ `Persistence`: SQLite (dev), MySql (prod)
-- ✅ `Authentication`: Session Based, `OAuth` via Github
-- ✅ `Deployment`: Docker, Page Compression (Flask-Minify) 
-
-<br />
-
 ## Demo
 
 > To authenticate use the default credentials ***test / pass*** or create a new user on the [registration page](https://www.creative-tim.com/live/black-dashboard-flask).
