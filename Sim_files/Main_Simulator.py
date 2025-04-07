@@ -46,10 +46,22 @@ from Planet import Planet
 from Atmosphere import Atmosphere
 from Rocket import Rocket
 import pandas as pd
+from flask import Flask, render_template, request
 
 # Auxiliary functions
 deg2rad=pi/180
 rad2deg=180/pi
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+  return render_template('index.html')
+
+@app.route('/process_data', methods=['POST'])
+def process_data():
+  name = request.form['name'] #add inputs here
+  age = request.form['age']
 
 # ------ Configuration of time simulation related data ------ #
 Start=0                     # [s]  # Starting time of simulation

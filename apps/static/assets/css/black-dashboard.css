@@ -18,22 +18,23 @@
 /*     brand Colors              */
 /* navbar color */
 :root {
-  --blue: #314ff8;
-  --orange: #fb6340;
+  --background: #190207;
+  --text-white: #f5efee;
+  --text-red: #b80005;
+  --text-blue: #314ff8;
+  --text-orange: #fb6340;
   --yellow: #ffd600;
   --green: #2dce89;
   --lighter: #e9ecef;
-  --primary: #690007;
+  --primary: #b80005;
   --secondary: #f4f5f7;
   --success: #00f2c3;
   --info: #1d8cf8;
   --warning: #ff8d72;
-  --danger: #fd5d93;
+  --danger: #070203;
   --light: #adb5bd;
   --dark: #212529;
   --default: #344675;
-  --white: #ffffff;
-  --neutral: #ffffff;
   --darker: black;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
@@ -11074,9 +11075,11 @@ table.tablesorter thead tr .headerSortDown {
   position: fixed;
   right: 0;
   width: 64px;
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--background);
   z-index: 1031;
-  border-radius: 8px 0 0 8px;
+  border-style: solid;
+  border-width: 1pt;
+  border-color: var(--text-red);
   text-align: center;
   top: 130px; }
   .fixed-plugin li > a,
@@ -11094,9 +11097,11 @@ table.tablesorter thead tr .headerSortDown {
     left: auto !important;
     top: -52px !important;
     width: 290px;
-    border-radius: 0.1875rem;
+    border-style: solid;
+    border-color: #f5efee;
+    border-width: 1pt;
     padding: 0 10px;
-    background: linear-gradient(#222a42, #1d253b); }
+    background: #190207; }
   .fixed-plugin .dropdown .dropdown-menu .tim-icons {
     top: 5px; }
   .fixed-plugin .dropdown-menu:after,
@@ -11300,8 +11305,9 @@ table.tablesorter thead tr .headerSortDown {
   box-shadow: 0px 0px 45px 0px rgba(0, 0, 0, 0.6);
   margin-top: 80px;
   margin-left: 20px;
-  border-color: #f5efee;
-  border-width: thin;
+  border-color: var(--text-white);
+  border-width: 1pt;
+  border-style: solid;
   transition: 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1); }
   .sidebar .sidebar-wrapper,
   .off-canvas-sidebar .sidebar-wrapper {
@@ -11636,7 +11642,7 @@ table.tablesorter thead tr .headerSortDown {
   width: 100%;
   min-height: 100vh;
   border-top: 2px solid #e14eca;
-  background: linear-gradient(#11151d, #190207 70%);
+  background: var(--background);
   transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1); }
   .main-panel[data="blue"] {
     border-top: 2px solid #1d8cf8; }
